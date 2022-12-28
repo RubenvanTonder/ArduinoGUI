@@ -33,19 +33,18 @@
             this.onButton = new System.Windows.Forms.Button();
             this.offButton = new System.Windows.Forms.Button();
             this.blinkButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // serialPort1
             // 
             this.serialPort1.BaudRate = 115200;
-            this.serialPort1.PortName = "COM5";
+            this.serialPort1.PortName = "COM4";
             // 
             // onButton
             // 
             this.onButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.onButton.Location = new System.Drawing.Point(206, 117);
+            this.onButton.Location = new System.Drawing.Point(12, 12);
             this.onButton.Name = "onButton";
             this.onButton.Size = new System.Drawing.Size(197, 108);
             this.onButton.TabIndex = 0;
@@ -56,7 +55,7 @@
             // offButton
             // 
             this.offButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.offButton.Location = new System.Drawing.Point(427, 117);
+            this.offButton.Location = new System.Drawing.Point(215, 12);
             this.offButton.Name = "offButton";
             this.offButton.Size = new System.Drawing.Size(197, 108);
             this.offButton.TabIndex = 1;
@@ -66,46 +65,35 @@
             // 
             // blinkButton
             // 
-            this.blinkButton.Location = new System.Drawing.Point(206, 263);
+            this.blinkButton.Location = new System.Drawing.Point(418, 12);
             this.blinkButton.Name = "blinkButton";
-            this.blinkButton.Size = new System.Drawing.Size(197, 117);
+            this.blinkButton.Size = new System.Drawing.Size(189, 108);
             this.blinkButton.TabIndex = 2;
             this.blinkButton.Text = "blinkLED";
             this.blinkButton.UseVisualStyleBackColor = true;
             this.blinkButton.Click += new System.EventHandler(this.blinkButton_Click);
             // 
-            // textBox1
+            // panel1
             // 
-            this.textBox1.Location = new System.Drawing.Point(206, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(356, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel1.Location = new System.Drawing.Point(12, 126);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(934, 456);
+            this.panel1.TabIndex = 3;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(958, 594);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.blinkButton);
             this.Controls.Add(this.offButton);
             this.Controls.Add(this.onButton);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -115,8 +103,7 @@
         private System.Windows.Forms.Button onButton;
         private System.Windows.Forms.Button offButton;
         private System.Windows.Forms.Button blinkButton;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
