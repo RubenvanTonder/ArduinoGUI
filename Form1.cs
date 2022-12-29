@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Odbc;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,48 +17,103 @@ namespace ArduinoGUI
     
     public partial class Form1 : Form
     {
-        int startX = 10;
-        int startY = 10;
-        int spaceBetweenPixels = 20;
-        char input;
-        string ledMovement = "0000";
+        int spriteStartPosX=50;
+        int spriteStartPosY=50;
         int ballPosX = 0;
         int ballPosY = 0;
-        int ballPrevPosX;
-        int ballPrevPosY;
+        int rectHeight;
+        int rectWidth;
+        public Bitmap bmp;
         int one = 1;
         private Timer timer1;
         bool serialOpen;
+        int moveX;
+        int moveY;
+
+        int[,] enemy = { { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 } ,
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 },
+                         { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 } };
+        int enemyRowLength;
+        int enemyColumnLength;
 
         public Form1()
         {
             InitializeComponent();
             InitTimer();
+            bmp = new Bitmap(panel1.Width, panel1.Height);
+            enemyRowLength = enemy.GetLength(0);
+            enemyColumnLength = enemy.GetLength(1);
+
 
         }
-        
+        public void drawSprite(int[,] sprite)
+        {
+
+        }
+
         public void InitTimer()
         {
             timer1 = new Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = 10; // in miliseconds
+            timer1.Interval = 1; // in miliseconds
             timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Graphics g_0 = this.panel1.CreateGraphics();
-            SolidBrush b = new SolidBrush(Color.Black);
-            g_0.FillEllipse(b, startX + ballPrevPosX * spaceBetweenPixels, startY + ballPrevPosY * spaceBetweenPixels, 10, 10);
+            bmp.Dispose();
+            bmp = new Bitmap(panel1.Width, panel1.Height);
+            enemyRowLength = enemy.GetLength(0);
+            enemyColumnLength = enemy.GetLength(1);
+            panel1.BackgroundImage = (Image)bmp;
+            panel1.BackgroundImageLayout = ImageLayout.None;
 
-            b.Color = Color.Green;
-            g_0.FillEllipse(b, startX + ballPosX * spaceBetweenPixels, startY + ballPosY * spaceBetweenPixels, 10, 10);
+            for (int i = 0; i < panel1.Height; i++)
+            {
+                for (int j = 0; j < panel1.Width; j+=10)
+                {
+                    if ((panel1.Width - j) > 10)
+                    {
+                        bmp.SetPixel(j, i, Color.Black);
+                        bmp.SetPixel(j + 1, i, Color.Black);
+                        bmp.SetPixel(j + 2, i, Color.Black);
+                        bmp.SetPixel(j + 3, i, Color.Black);
+                        bmp.SetPixel(j + 4, i, Color.Black);
+                        bmp.SetPixel(j + 5, i, Color.Black);
+                        bmp.SetPixel(j + 6, i, Color.Black);
+                        bmp.SetPixel(j + 7, i, Color.Black);
+                        bmp.SetPixel(j + 8, i, Color.Black);
+                        bmp.SetPixel(j + 9, i, Color.Black);
+                    }
+
+                }
+            }
+            for (int k = 0; k < 10; k++)
+            {
+                for (int i = 0; i < enemyRowLength; i++)
+                {
+                    for (int j = 0; j < enemyColumnLength; j++)
+                    {
+                        if (enemy[i, j] == 1)
+                        {
+                            bmp.SetPixel(j + spriteStartPosX+20*k, i + spriteStartPosY, Color.Red);
+                        }
+                    }
+                }
+            }
+            spriteStartPosX++;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             // Send Command to the arduino to turn off LED
-            serialPort1.Write("a");
+            drawSprite(enemy);
         }
 
         private void onButton_Click(object sender, EventArgs e)
@@ -67,42 +125,18 @@ namespace ArduinoGUI
         public void MoveRight()
         {
             
-            if (ballPosX < 9)
-            {
-                ballPrevPosX = ballPosX;
-                ballPrevPosY = ballPosY;
-                ballPosX++;
-            }
         }
         public void MoveLeft()
         {
-            
-            if (ballPosX > 0)
-            {
-                ballPrevPosX = ballPosX;
-                ballPrevPosY = ballPosY;
-                ballPosX--;
-            }
+                
         }
         public void MoveUp()
         {
-            
-            if (ballPosY > 0)
-            {
-                ballPrevPosY = ballPosY;
-                ballPrevPosX = ballPosX;
-                ballPosY--;
-            }
+               
         }
         public void MoveDown()
         {
             
-            if (ballPosY < 9)
-            {
-                ballPrevPosY = ballPosY;
-                ballPrevPosX = ballPosX;
-                ballPosY++;
-            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -111,17 +145,7 @@ namespace ArduinoGUI
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g_0 = this.panel1.CreateGraphics();
-            SolidBrush b = new SolidBrush(Color.Black);
-            for(int y=0; y < 10; y++)
-            {
-                for(int x = 0; x < 10; x++)
-                {
-                    g_0.FillEllipse(b, startX + x * spaceBetweenPixels, startY + y * spaceBetweenPixels, 10, 10);
-                }
-                
-            }
-            
+
         }
         private void blinkButton_Click(object sender, EventArgs e)
         {

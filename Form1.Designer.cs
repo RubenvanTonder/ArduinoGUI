@@ -73,7 +73,7 @@
             // moveRightButton
             // 
             this.moveRightButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveRightButton.Location = new System.Drawing.Point(815, 259);
+            this.moveRightButton.Location = new System.Drawing.Point(862, 266);
             this.moveRightButton.Name = "moveRightButton";
             this.moveRightButton.Size = new System.Drawing.Size(189, 108);
             this.moveRightButton.TabIndex = 2;
@@ -85,14 +85,14 @@
             // 
             this.panel1.Location = new System.Drawing.Point(12, 126);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(595, 456);
+            this.panel1.Size = new System.Drawing.Size(624, 456);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // moveLeftButton
             // 
             this.moveLeftButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveLeftButton.Location = new System.Drawing.Point(613, 259);
+            this.moveLeftButton.Location = new System.Drawing.Point(660, 266);
             this.moveLeftButton.Name = "moveLeftButton";
             this.moveLeftButton.Size = new System.Drawing.Size(189, 108);
             this.moveLeftButton.TabIndex = 4;
@@ -103,7 +103,7 @@
             // moveUpButton
             // 
             this.moveUpButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveUpButton.Location = new System.Drawing.Point(712, 136);
+            this.moveUpButton.Location = new System.Drawing.Point(759, 143);
             this.moveUpButton.Name = "moveUpButton";
             this.moveUpButton.Size = new System.Drawing.Size(189, 108);
             this.moveUpButton.TabIndex = 5;
@@ -114,7 +114,7 @@
             // moveDownButton
             // 
             this.moveDownButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveDownButton.Location = new System.Drawing.Point(712, 387);
+            this.moveDownButton.Location = new System.Drawing.Point(759, 394);
             this.moveDownButton.Name = "moveDownButton";
             this.moveDownButton.Size = new System.Drawing.Size(189, 108);
             this.moveDownButton.TabIndex = 6;
@@ -174,7 +174,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 594);
+            this.ClientSize = new System.Drawing.Size(1063, 624);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.statusLabel);
